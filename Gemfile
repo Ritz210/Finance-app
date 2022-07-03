@@ -39,6 +39,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'iex-ruby-client'
+gem "font-awesome-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
