@@ -1,0 +1,48 @@
+<h1>Friends</h1>
+
+<div class='search-area'>
+  <h3>Search Friends</h3>
+  <%= form_tag search_friends_path , method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-padding">
+        <%= text_field_tag :friend, params[:friend], placeholder: "Stock friends", autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+      <div class="col-sm-3 no-left-padding">
+        <%= button_tag type: :submit, class: "btn btn-success" do %>
+          <%= fa_icon 'search 2x' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'users/friendsResult' %>
+
+<div class="row">
+  <div class="col-9">
+    <table class="table table-bordered hover">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @my_friends.each do |items| %>
+      <tr>
+        <th scope="row"><%= items.email %></th>
+        <td><%= items.first_name %></td>
+        <td><%= items.last_name %></td>
+        <td align = "center" >
+        <%= link_to 'View profile', user_show_profile_path(id: items.id), class: "btn btn-sm btn-success mr-1", method: :get%>            
+        <%= link_to 'Unfollow', user_friends_delete_path(id: items), method: :delete, class:"btn btn-sm btn-warning ml-1" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+</div>
+

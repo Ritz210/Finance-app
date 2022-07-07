@@ -18,3 +18,32 @@
 
 <%= render 'users/result' %>
 
+<div class="row">
+  <div class="col-9">
+    <table class="table table-bordered hover">
+  <thead>
+    <tr>
+      <th scope="col">Ticker</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracked.each do |items| %>
+      <tr>
+        <th scope="row"><%= items.ticker %></th>
+        <td><%= items.name %></td>
+        <td><%= items.last_price %></td>
+        <td align = "center">
+        <%= link_to 'Remove', user_stocks_delete_path(id: items), method: :delete, class:"btn btn-sm btn-warning mr-1" %>
+        <%= link_to 'Refresh', stocks_refresh_path(id:items), method: :post, class:"btn btn-sm btn-success ml-1" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+</div>
+
+

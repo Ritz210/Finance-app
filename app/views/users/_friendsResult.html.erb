@@ -1,0 +1,30 @@
+<% if @friend %>
+  <div class="card card-header result-port mb-2">
+    <table class = "col-md-12">
+      <tbody>
+        <% @friend.each do |frnd| %>
+          <tr>
+            <td class="px-2"><strong>email:</strong> <%= frnd.email %></td>
+            <td class="px-2"><strong>name:</strong> <%= frnd.first_name %> <%= frnd.last_name %></td>
+            <td align ="center" class="px-2">
+              <% if current_user.id != frnd.id %>
+                <%= link_to 'View profile', user_show_profile_path(id: frnd.id), class: "btn btn-sm btn-success", method: :get%>
+                <% if current_user.is_friend_exists(frnd.id) %>
+                  <span class="badge badge-secondary">
+                    Already following
+                  </span>
+                <% else %>
+                  <%= link_to 'Follow', user_friends_path(friend: frnd.id , user: current_user), class: "btn btn-xs btn-warning", method: :get%>
+                <% end %>
+              <% else %>
+                <span class="badge badge-secondary">
+                  you cannot follow yourself
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

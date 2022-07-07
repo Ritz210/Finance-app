@@ -1,0 +1,54 @@
+<h2>Users deatils</h2>
+<% if @user %>
+  <div class="card card-header result-port mb-2">
+    <strong>email:</strong> <%= @user.email %>
+    <strong>name:</strong> <%= @user.first_name %> <%= @user.last_name %>
+    <% if current_user.is_friend_exists(@user.id) %>
+      <span class="badge badge-secondary">
+        Already following
+      </span>
+    <% else %>
+      <%= link_to 'Follow', user_friends_path(friend: @user.id , user: current_user), class: "btn btn-xs btn-warning", method: :get%>
+    <% end %>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-9">
+    <table class="table table-bordered hover">
+  <thead>
+    <tr>
+      <th scope="col">Ticker</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracked.each do |items| %>
+      <tr>
+        <th scope="row"><%= items.ticker %></th>
+        <td><%= items.name %></td>
+        <td><%= items.last_price %></td>
+        <td align ="center">
+          <% if current_user.can_track_more(items.ticker) %>
+            <%= link_to 'Add to portfolio', user_stocks_path(ticker: items.ticker, user: current_user), class: "btn btn-sm btn-success", method: :get%>
+          <% else %>
+            <span class="badge badge-secondary">
+              you are already tracking
+            <% if !current_user.under_limit %>
+              10 stocks
+            <%end%>
+            <% if current_user.is_stock_exists(items.ticker) %>
+              
+            <%end%>
+            </span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+</div>

@@ -42,6 +42,7 @@ gem 'iex-ruby-client'
 gem "font-awesome-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+gem 'certified'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

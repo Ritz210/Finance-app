@@ -82,6 +82,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    certified (1.0.0)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -152,7 +153,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.16.1)
+    minitest (5.16.2)
     money (6.16.0)
       i18n (>= 0.6.4, <= 2)
     msgpack (1.5.3)
@@ -174,7 +175,10 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6-x64-mingw32)
       racc (~> 1.4)
+    nokogiri (1.13.6-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.4.1)
     pg (1.4.1-x64-mingw32)
     public_suffix (4.0.7)
     puma (5.6.4)
@@ -266,10 +270,12 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
   capybara
+  certified
   debug
   devise
   devise-bootstrap-views (~> 1.0)
@@ -293,4 +299,4 @@ RUBY VERSION
    ruby 3.0.4p208
 
 BUNDLED WITH
-   2.2.33
+   2.3.17
